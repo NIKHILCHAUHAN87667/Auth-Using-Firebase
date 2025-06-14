@@ -1,0 +1,176 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Authentication With Firebase</title>
+    <link rel="stylesheet" href="mystyles.css">
+    <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-auth.js"></script>
+</head>
+<body>
+<div class="container" id="container">
+  <div class="form-container sign-up-container">
+    <form action="#">
+      <h1>Create Account</h1>
+      
+      
+      <input type="email" id="email" placeholder="Email" />
+      <input type="password" id="pass" placeholder="Password" />
+      <input type="password" id="cpass" placeholder="Confirm Password" />
+      <button onclick="signup()">Sign Up</button>
+    </form>
+  </div>
+  <div class="form-container sign-in-container">
+    <form action="#">
+      <h1>Sign in</h1>
+      <input type="email" id="emaillogin" placeholder="Email" />
+      <input type="password" id="passlogin" placeholder="Password" />
+      <button onclick="signin()">Sign In</button>
+    </form>
+  </div>
+  <div class="overlay-container">
+    <div class="overlay">
+      <div class="overlay-panel overlay-left">
+        <h1>Welcome Back!</h1>
+        <p>To keep connected with us please login with your personal info</p>
+        <button class="ghost" id="signIn">Sign In</button>
+      </div>
+      <div class="overlay-panel overlay-right">
+        <h1>Hello, Friend!</h1>
+        <p>Enter your personal details and start journey with us</p>
+        <button class="ghost" id="signUp">Sign Up</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  const signUpButton = document.getElementById('signUp');
+const signInButton = document.getElementById('signIn');
+const container = document.getElementById('container');
+
+signUpButton.addEventListener('click', () => {
+  container.classList.add("right-panel-active");
+});
+
+signInButton.addEventListener('click', () => {
+  container.classList.remove("right-panel-active");
+});
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyDuqb0JJLk6kn3vvnMcHvHI7qhDIvfzrL0",
+        authDomain: "auth-app-14june-2025.firebaseapp.com",
+        projectId: "auth-app-14june-2025",
+        storageBucket: "auth-app-14june-2025.firebasestorage.app",
+        messagingSenderId: "171915115517",
+        appId: "1:171915115517:web:d51b7e511970dcd04e7794"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+
+const email=document.getElementById("email");
+const pass=document.getElementById("pass");
+const cpass=document.getElementById("cpass");
+const emaillogin=document.getElementById("emaillogin");
+const passlogin=document.getElementById("passlogin");
+
+
+const signup=()=>{
+
+    event.preventDefault();
+    if(email.value==="")
+{
+    alert("Please Enter Email!");
+    email.focus();
+    return;
+    
+}
+
+    if(pass.value==="")
+{
+    alert("Please Enter Password!");
+    pass.focus();
+    return;
+    
+}
+
+    if(cpass.value==="")
+{
+    alert("Please  Confirm Password!");
+    cpass.focus();
+    return;
+    
+}
+
+if(pass.value!==cpass.value)
+{
+    alert("Passwords Did not Match , please try Again!");
+    pass.focus();
+    return;
+    
+}
+
+    
+    firebase.auth().createUserWithEmailAndPassword(email.value, pass.value)
+    .then(res=>{
+        alert("Registration Succesfull");
+        container.classList.remove("right-panel-active");
+
+    })
+    .catch(alert(error.message));
+    
+
+
+}
+
+    const signin=()=>{
+
+        event.preventDefault();
+        
+        if(emaillogin.value==="")
+{
+    alert("Please Enter Email!");
+    emaillogin.focus();
+    return;
+    
+}
+
+    if(passlogin.value==="")
+{
+    alert("Please Enter Password!");
+    passlogin.focus();
+    return;
+    
+}
+
+    firebase.auth().signInWithEmailAndPassword(emaillogin.value,passlogin.value)
+    .then(res=>{
+        alert("Authentication Succesfull!")})
+    .catch(alert(error.message));
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>
