@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="mystyles.css">
     <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-auth.js"></script>
+    <script src="/config.js"></script>
 </head>
 <body>
 <div class="container" id="container">
@@ -58,7 +59,7 @@ signInButton.addEventListener('click', () => {
 });
 
     const firebaseConfig = {
-        apiKey: "AIzaSyDuqb0JJLk6kn3vvnMcHvHI7qhDIvfzrL0",
+        apiKey: apikey,
         authDomain: "auth-app-14june-2025.firebaseapp.com",
         projectId: "auth-app-14june-2025",
         storageBucket: "auth-app-14june-2025.firebasestorage.app",
