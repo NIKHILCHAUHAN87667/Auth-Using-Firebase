@@ -1,0 +1,2 @@
+window.env = {
+  apikey:"AIzaSyDuqb0JJLk6kn3vvnMcHvHI7qhDIvfzrL0"}; 
